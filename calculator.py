@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+
 def calculate(expr):
     print(eval(expr))
 
