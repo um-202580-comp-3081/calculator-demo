@@ -19,6 +19,8 @@ Test Cases
 
 Expected Success:
 ./calculator.py "1 + 2"
+./calculator.py -v "1 + 2"
+./calculator.py "1 + 2" -v 
 
 Expected Failure:
 ./calculator.py
@@ -31,11 +33,23 @@ if len(sys.argv) < 2:
     sys.exit(1)
 
 
-expr = sys.argv[1]
+verbose = False
+expr = None
+i = 1
+while i < len(sys.argv):
+    arg = sys.argv[i]
+    if arg == "-v":
+        verbose = True
+    else:
+        expr = arg
+    i += 1
 
 
-def calculate(expr):
-    print(eval(expr))
+def calculate(expr, verbose):
+    if verbose:
+        print(f"{expr} = {eval(expr)}")
+    else:
+        print(eval(expr))
 
 
-calculate(expr)
+calculate(expr, verbose)
